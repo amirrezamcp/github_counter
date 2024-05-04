@@ -1,3 +1,18 @@
+<?php
+$pagePath = '';
+$baseDir = __DIR__ . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR ;
+if(isset($_GET['page'])) {
+  $pageName = $_GET['page'];
+  $pageName = pathinfo($pageParameter, PATHINFO_FILENAME);
+  $pageName = preg_replace('/[^a-zA-Z0-9]/', '', $pageName);
+  $pagePath = $baseDir . $pageName . '.php';
+  if(!file_exists($pagePath)) {
+    $pagePath = $baseDir . 'Default.php';
+  }
+}else{
+  $pagePath = $baseDir . 'Default.php';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,7 +235,7 @@
     
     <!-- Main content -->
     <section class="content">
-      
+      <?php include_once $pagePath; ?>
     </section>
     <!-- /.content -->
   </div>
