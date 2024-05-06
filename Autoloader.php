@@ -1,19 +1,14 @@
 <?php
+function ClassAutoloader($className) {
+    $className = trim($className, '\\');
+    $classNameArray = explode('\\', $className);
+    $baseDIR = __DIR__ . DIRECTORY_SEPARATOR . $classNameArray[0] . DIRECTORY_SEPARATOR;
+    $className = $classNameArray[1];
+    $filePath = $baseDIR . $className . ".php";
 
-class Autoloder {
-    public static function loadClass($className) {
-        $path = __DIR__ . DIRECTORY_SEPARATOR . $className . '.php';
-        if(file_exists($path)) {
-            include_once $path;
-        }
-    }
-
-    public static function register() {
-        spl_autoload_register([
-            'Autoloder',
-            'loadClass'
-        ]);
+    if(file_exists($filePath)) {
+        include_once($filePath);
     }
 }
 
-Autoloder::register();
+spl_autoload_register("classAutoloader");
