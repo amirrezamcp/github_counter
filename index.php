@@ -1,6 +1,9 @@
 <?php
-use Classes\Database;
+
 require_once "Autoloader.php";
+
+use Classes\Database;
+
 // use Classes\TestClass;
 
 // $obj = new TestClass();
