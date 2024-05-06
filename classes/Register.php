@@ -1,5 +1,8 @@
 <?php
-namespace Classes;
+namespace Classes\Register;
+
+use Classes\Database\Database;
+use src\Semej\Semej;
 
 class Register {
     protected $data;
@@ -19,9 +22,11 @@ class Register {
             'password' => md5($this->data['password'])
         ];
         if($this->connection->insert('users',  $userData)) {
-            echo 'ok';
+            Semej::set('success', 'ok', 'User registered successfully.');
+            header('Location: register.php');
         }else{
-            echo 'not ok';
+            Semej::set('error', 'Error', 'registered failed.');
+            header('Location: register.php');
         }
     }
     protected function checkPassword() {

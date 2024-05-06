@@ -2,10 +2,12 @@
 
 require_once "Autoloader.php";
 
-use Classes\Register;
+use Classes\Register\Register;
+use src\Semej\Semej;
+use Traits\SanitizerTrait;
 
 if(isset($_POST['register-btn']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = $_POST['frm'];
+    $data = SanitizerTrait::sanitizeInput($_POST['frm']);
     $register = new Register($data);
 
 }
@@ -31,7 +33,7 @@ if(isset($_POST['register-btn']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="register-logo">
     <a href="../../index2.html"><b>Admin</b>LTE</a>
   </div>
-
+  <?php Semej::show(); ?>
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
