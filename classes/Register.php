@@ -1,8 +1,8 @@
 <?php
-namespace Classes\Register;
+namespace Classes;
 
-use Classes\Database\Database;
-use src\Semej\Semej;
+use Classes\Database;
+use src\Semej;
 
 class Register {
     protected $data;
@@ -30,7 +30,7 @@ class Register {
         }
     }
     protected function checkPassword() {
-        if($this->data['password'] === $this->data['confirm-password']) {
+        if($this->data['password'] === $this->data['confirm_password']) {
             return true;
         }else{
             return false;
