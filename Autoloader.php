@@ -11,4 +11,4 @@ function ClassAutoloader($className) {
     }
 }
 
-spl_autoload_register("classAutoloader");
+spl_autoload_register("ClassAutoloader");
