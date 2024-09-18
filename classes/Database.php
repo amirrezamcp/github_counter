@@ -1,5 +1,5 @@
 <?php
-namespace Classes\Database;
+namespace Classes;
 
 use PDO;
 use PDOException;
@@ -61,7 +61,7 @@ class Database {
         $sql = "SELECT $columns FROM $table WHERE $condition";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     // Method to select all data from a table

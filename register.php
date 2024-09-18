@@ -2,15 +2,17 @@
 
 require_once "Autoloader.php";
 
-use Classes\Register\Register;
-use src\Semej\Semej;
+use Classes\Register;
+use src\Semej;
 use Traits\SanitizerTrait;
 
-if(isset($_POST['register-btn']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['register_btn']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = SanitizerTrait::sanitizeInput($_POST['frm']);
+
     $register = new Register($data);
 
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +66,7 @@ if(isset($_POST['register-btn']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
         </div>
         <div class="input-group mb-3">
-          <input name="frm[confirm-password]" type="password" class="form-control" placeholder="Retype password">
+          <input name="frm[confirm_password]" type="password" class="form-control" placeholder="Retype password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -82,7 +84,7 @@ if(isset($_POST['register-btn']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button name="register-btn" type="submit" class="btn btn-primary btn-block" value="Submit">Register</button>
+            <input type="submit" value="Submit" class="btn btn-primary btn-block" name="register_btn">
           </div>
           <!-- /.col -->
         </div>
@@ -105,7 +107,7 @@ if(isset($_POST['register-btn']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- /.form-box -->
   </div><!-- /.card -->
 </div>
-<!-- /.register-box -->assets/dashboard/
+<!-- /.register-box -->
 
 <!-- jQuery -->
 <script src="assets/dashboard/plugins/jquery/jquery.min.js"></script>
