@@ -21,13 +21,12 @@ class Register {
             'email' => $this->data['email'],
             'password' => md5($this->data['password'])
         ];
-        if($this->connection->insert('users',  $userData)) {
-            Semej::set('success', 'ok', 'User registered successfully.');
-            header('Location: register.php');
+        if($this->connection->insert('users', $userData)) {
+            Semej::set('success', 'OK', 'User register successfully.');
         }else{
-            Semej::set('error', 'Error', 'registered failed.');
-            header('Location: register.php');
+            Semej::set('danger', 'Error', 'register failed');
         }
+        header('Location: register.php');die;
     }
     protected function checkPassword() {
         if($this->data['password'] === $this->data['confirm_password']) {
