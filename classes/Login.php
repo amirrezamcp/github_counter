@@ -19,6 +19,7 @@ class Login {
 
     public function loginUser() 
     {
+        session_start();
         $email = $this->data['email'];
 
         $user = $this->connection->select('users', "email='$email'");
