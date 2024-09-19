@@ -1,11 +1,27 @@
 <?php
-$pagePath = '';
-$baseDir = __DIR__ . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR ;
+
+require_once "Autoloader.php";
+
+use src\AuthToken;
+use src\Semej;
+
+if(!AuthToken::check()) {
+  Semej::set('danger', 'error', 'you shoud login first.');
+  header('Location: login.php');die;
+}
+
+if(isset($_GET['logout'])) {
+  AuthToken::delete();
+  header('Location: login.php');die;
+}
+
+// check url
+$baseDir = __DIR__ . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR;
 if(isset($_GET['page'])) {
-  $pageName = $_GET['page'];
+  $pageParameter = $_GET['page'];
   $pageName = pathinfo($pageParameter, PATHINFO_FILENAME);
   $pageName = preg_replace('/[^a-zA-Z0-9]/', '', $pageName);
-  $pagePath = $baseDir . $pageName . '.php';
+  $pagePath = $baseDir . ucfirst($pageName) . '.php';
   if(!file_exists($pagePath)) {
     $pagePath = $baseDir . 'Default.php';
   }
@@ -60,7 +76,12 @@ if(isset($_GET['page'])) {
         <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link">Contact 123</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?= htmlspecialchars($_SERVER['PHP_SELF'].'?logout'); ?>" class="nav-link">
+          <button class="btn btn-danger">Logout</button>
+        </a>
       </li>
     </ul>
 
@@ -287,7 +308,7 @@ if(isset($_GET['page'])) {
 <!-- AdminLTE App -->
 <script src="assets/dashboard/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="assets/dashboard/dist/js/demo.js"></script>
+<!-- <script src="assets/dashboard/dist/js/demo.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="assets/dashboard/dist/js/pages/dashboard.js"></script>
 </body>
