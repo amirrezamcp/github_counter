@@ -1,3 +1,12 @@
+<?php
+
+use Classes\Link;
+
+$link = new Link();
+$links = $link->showLinks();
+
+?>
+
 <div class="row">
     <div class="col-12">
         <h2>Links</h2>
@@ -7,20 +16,24 @@
         <hr>
         <table class="table table-stripped table-hover">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>UUID</th>
-                    <th>View</th>
-                    <th>Operations</th>
-                </tr>
+            <tr>
+                <th>title</th>
+                <th>UUID</th>
+                <th>View</th>
+                <th>Operations</th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th>test 1</th>
-                    <th>a1b2c3</th>
-                    <th>+9999</th>
-                    <th>Admin</th>
-                </tr>
+           <?php 
+            foreach($links as $link):
+           ?>
+            <tr>
+                <td><?php echo $link['title']; ?></td>
+                <td><?php echo $link['uuid']; ?></td>
+                <td><?php echo $link['counter']; ?></td>
+                <td>Edit</td>
+            </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>

@@ -9,13 +9,13 @@ class Link {
     protected $data;
     protected $connection;
 
-    public function __construct($data)
+    public function __construct()
     {
-        $this->data = $data;
         $this->connection = new Database();
     }
 
-    public function addLink() {
+    public function addLink($data) {
+        $this->data = $data;
         $user_id = $_SESSION['user_id'];
         $title = $this->data;
         $uuid = uniqid('bigpotato_yt'); 
@@ -29,5 +29,12 @@ class Link {
         Semej::set('success', 'ok', 'link created successfully.');
         header('Location:dashboard.php');
         die;
+    }
+
+    public function showLinks()
+    {
+        $user_id = $_SESSION['user_id'];
+        $allLinks = $this->connection->selectAllWithCondition('links', "user_id = '$user_id'");
+        return $allLinks;
     }
 }
