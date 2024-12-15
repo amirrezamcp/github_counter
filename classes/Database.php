@@ -71,4 +71,13 @@ class Database {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
+    // Method to select all data from a table with condition
+    public function selectAllWithCondition($table, $condition, $columns = "*") {
+        $sql = "SELECT $columns FROM $table WHERE $condition";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
