@@ -1,4 +1,4 @@
-<?php declare(strict_types=1); // strict mode
+<?php declare(strict_types=1);
 
 namespace src;
 

@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 function ClassAutoloader($className) {
     $className = trim($className, '\\');
     $classNameArray = explode('\\', $className);

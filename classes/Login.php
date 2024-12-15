@@ -19,7 +19,6 @@ class Login {
 
     public function loginUser() 
     {
-        session_start();
         $email = $this->data['email'];
 
         $user = $this->connection->select('users', "email='$email'");
@@ -36,7 +35,7 @@ class Login {
 
        $_SESSION['username'] = $user['email'];
        AuthToken::generate();
-       header('Location: dashboard.php');die;
+      header('Location: dashboard.php');die;
 
     }
 }
